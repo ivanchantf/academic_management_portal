@@ -1,42 +1,63 @@
 // src/App.jsx
-import  { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedLayout from './components/ProtectedLayout';
+import RequireRole from './components/RequireRole';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 
-export default function App() {
-  const [user, setUser] = useState(null);
+function AppRoutes() {
+  const { user, loading } = useAuth();
 
-  const handleLoginSuccess = (userData) => {
-    setUser(userData);
-  };
+  // 1. Wait until checkIdentity finished before rendering routes
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+        <h3>Verifying session...</h3>
+      </div>
+    );
+  }
 
+  // 2. Render routes safely once user state is resolved
   return (
-    <BrowserRouter >
-      <Routes>
-        {/* Public Routes */}
-        <Route
-          path="/login"
-          element={<Login onLoginSuccess={handleLoginSuccess} />}
-        />
-        
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes Wrapper */}
-        <Route element={<ProtectedRoute />}>
-          {/* Shared Layout with Top Navbar */}
-          <Route element={<ProtectedLayout />}>
-            <Route path="/dashboard" element={<Dashboard user={user} />} />
-            <Route path="/profile" element={<Profile user={user} />} />
+      {/* Protected Routes Wrapper */}
+      <Route element={<ProtectedRoute user={user} />}>
+        <Route element={<ProtectedLayout />}>
+        {/* both STAFF and STUDENT Route */}
+          <Route path="/dashboard" element={<Dashboard user={user} />} />
+          <Route path="/profile" element={<Profile user={user} />} />
+
+          {/* Staff-Only Route */}
+          <Route element={<RequireRole user={user} allowedRole="Staff" />}>
+            <Route path="/abc" element={<h1>This Page is for Staff Only</h1>} />
+          </Route>
+
+          {/* Student-Only Route */}
+          <Route element={<RequireRole user={user} allowedRole="Student" />}>
+            <Route path="/def" element={<h1>This page is for Student-Only</h1>} />
           </Route>
         </Route>
+      </Route>
 
-        {/* Fallback / Catch-All Redirect */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
+      {/* Catch-All */}
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

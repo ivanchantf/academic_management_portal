@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import siteIcon from '../assets/siteIcon.png'; // Adjust extension (.svg, .png, etc.) and relative path if needed
+import { useEffect } from 'react';
+import { checkIdentity } from '../utils/checkIdentity';
 
 export default function Login({ onLoginSuccess }) {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [formData, setFormData] = useState({ username: 'tmchan', password: 'tmchan123!' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -11,6 +13,14 @@ export default function Login({ onLoginSuccess }) {
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  useEffect(()=>{
+    checkIdentity().then((data)=>{
+      if(data?.user){
+        navigate('/dashboard');
+      }
+    });
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

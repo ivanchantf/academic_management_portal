@@ -1,5 +1,5 @@
-export default function Dashboard({}) {
+export default function Dashboard({user}) {
     return(
-        <>Dashboard</>
+        <>Dashboard - Welcome {JSON.stringify(user)}</>
     )
 }
