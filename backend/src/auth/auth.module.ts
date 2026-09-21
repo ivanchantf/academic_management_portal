@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { AuthModule } from './auth/auth.module.js';
+import { AuthService } from './auth.service.js';
+import { AuthController } from './auth.controller.js';
+import { JwtService } from '@nestjs/jwt';
 // Recreate __dirname for ES Module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,9 +16,8 @@ TypeOrmModule.forRoot({
       database: resolve(__dirname, '../../pjDB.db'),
       logging: true,
     }),
-    AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AuthController],
+  providers: [AuthService, JwtService],
 })
-export class AppModule {}
+export class AuthModule {}

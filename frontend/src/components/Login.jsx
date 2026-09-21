@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import siteIcon from '../assets/siteIcon.png'; // Adjust extension (.svg, .png, etc.) and relative path if needed
 
 export default function Login({ onLoginSuccess }) {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
@@ -21,21 +18,18 @@ export default function Login({ onLoginSuccess }) {
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_PATH}/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_PATH}/auth/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Handle successful login (e.g. store token, update auth context)
-        if (onLoginSuccess) {
-          onLoginSuccess(data);
-        }
+        if (onLoginSuccess) onLoginSuccess(data);
+        navigate('/dashboard');
       } else {
         setError(data.message || 'Invalid username or password.');
       }
@@ -49,7 +43,10 @@ export default function Login({ onLoginSuccess }) {
   return (
     <div style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
-        <h2>Login</h2>
+        <div style={styles.header}>
+          <img src={siteIcon} alt="Site Icon" style={styles.icon} />
+          <h2>Login</h2>
+        </div>
 
         {error && <div style={styles.error}>{error}</div>}
 
@@ -103,6 +100,18 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '0.5rem',
+  },
+  icon: {
+    width: '200px',
+    height: '200px',
+    objectFit: 'contain',
+    borderRadius: '20%',
   },
   inputGroup: {
     display: 'flex',
