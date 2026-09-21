@@ -1,5 +1,5 @@
 export default function Dashboard({user}) {
     return(
-        <>Dashboard - Welcome {JSON.stringify(user)}</>
+        <>Dashboard -  {user?.Name || 'User'}, Please Select Functions below:</>
     )
 }

@@ -7,8 +7,8 @@ import ProtectedLayout from './components/ProtectedLayout';
 import RequireRole from './components/RequireRole';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
-
+import ProfileStaff from './components/ProfileStaff';
+import ProfileStudent from './components/ProfileStudent';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -29,19 +29,21 @@ function AppRoutes() {
 
       {/* Protected Routes Wrapper */}
       <Route element={<ProtectedRoute user={user} />}>
-        <Route element={<ProtectedLayout />}>
+        <Route element={<ProtectedLayout/>}>
         {/* both STAFF and STUDENT Route */}
           <Route path="/dashboard" element={<Dashboard user={user} />} />
-          <Route path="/profile" element={<Profile user={user} />} />
+     
 
           {/* Staff-Only Route */}
           <Route element={<RequireRole user={user} allowedRole="Staff" />}>
             <Route path="/abc" element={<h1>This Page is for Staff Only</h1>} />
+                 <Route path="/profile-staff" element={<ProfileStaff user={user} />} />
           </Route>
 
           {/* Student-Only Route */}
           <Route element={<RequireRole user={user} allowedRole="Student" />}>
             <Route path="/def" element={<h1>This page is for Student-Only</h1>} />
+                <Route path="/profile-student" element={<ProfileStudent user={user} />} />
           </Route>
         </Route>
       </Route>

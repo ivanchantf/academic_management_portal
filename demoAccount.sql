@@ -2,7 +2,7 @@ INSERT INTO Departments (Name, Address, Phone_No)
 VALUES (
     'Department of Computer Science',
     '8/F, Academic Building, Main Campus',
-    '+852 3411 7000'
+    '+852 34117000'
 );
 --------------DEMO staff
 INSERT INTO Users (
@@ -23,9 +23,9 @@ INSERT INTO Users (
     '1985-04-12',
     'Flat B, 12/F, Tower 1, Shatin, N.T.',
     'Male',
-    '+852 9123 4567',
+    '+852 91234567',
     'alex.wong@university.edu.hk',
-    '+852 9876 5432',
+    '+852 98765432',
     'Mary Wong',
     '2021-09-01 09:00:00',
     1
@@ -70,9 +70,9 @@ INSERT INTO Users (
     '2002-11-15',
     'Room 802, Block A, Student Residence, Kowloon',
     'Male',
-    '+852 6123 9876',
+    '+852 61239876',
     'taiman.chan@student.university.edu.hk',
-    '+852 9123 0000',
+    '+852 91230000',
     'Chan Wai Man',
     '2024-09-01 09:00:00',
     1  
