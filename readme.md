@@ -65,7 +65,5 @@ npm run start:dev
 * **Frontend:** React / Web Framework
 * **Backend:** Node.js / Express or NestJS
 * **Package Manager:** `npm`
+* **Database:** SQLite
 
-```
-
-```
