@@ -1,4 +1,4 @@
-```markdown
+
 # 🎓 Academic Management Portal
 
 A full-stack application for managing academic workflows, featuring separate frontend and backend architectures.
