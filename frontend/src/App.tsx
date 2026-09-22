@@ -11,6 +11,7 @@ import ProfileStaff from './components/ProfileStaff';
 import ProfileStudent from './components/ProfileStudent';
 import PasswordChange from './components/PasswordChange';
 import Department from './components/Department';
+import StudentEnrollment from './components/StudentEnrollment';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -42,6 +43,7 @@ function AppRoutes() {
           <Route element={<RequireRole user={user} allowedRole="Staff" />}>
             <Route path="/abc" element={<h1>This Page is for Staff Only</h1>} />
             <Route path="/profile-staff" element={<ProfileStaff user={user} />} />
+            <Route path="/student-enrollment" element={<StudentEnrollment user={user} />} />
           </Route>
 
           {/* Student-Only Route */}

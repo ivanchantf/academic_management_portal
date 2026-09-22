@@ -8,7 +8,9 @@ import { AuthModule } from './auth/auth.module.js';
 import { ProfileModule } from './profile/profile.module.js';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { DepartmentModule } from './department/department.module.js';
+import { EnrollmentModule } from './enrollment/enrollment.module.js';
 import { join } from 'path';
+import { ProgrammeModule } from './programme/programme.module.js';
 // Recreate __dirname for ES Module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -29,7 +31,9 @@ const __dirname = dirname(__filename);
   }),
     AuthModule,
     ProfileModule,
-    DepartmentModule
+    DepartmentModule,
+    EnrollmentModule,
+    ProgrammeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

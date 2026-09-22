@@ -172,17 +172,29 @@ CREATE TABLE IF NOT EXISTS Course_Enrollments (
     FOREIGN KEY (Course_Code) REFERENCES Courses(Course_Code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- 17. Programme_Enrollments (Junction Table)
-CREATE TABLE IF NOT EXISTS Programme_Enrollments (
+-- 17. Programme_Major_Enrollments (Junction Table)
+
+
+CREATE TABLE IF NOT EXISTS Programme_Major_Enrollments (
     Student_ID INTEGER,
     Programme_Code TEXT,
     Enroll_DT TEXT NOT NULL,
     Status TEXT DEFAULT 'Enrolled',
     PRIMARY KEY (Student_ID, Programme_Code),
     FOREIGN KEY (Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (Programme_Code) REFERENCES Programmes(Programme_Code) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (Programme_Code) REFERENCES Major_Programmes(Programme_Code) ON DELETE CASCADE ON UPDATE CASCADE
 );
+-- 17B. Programme_Minor_Enrollments (Junction Table)
 
+CREATE TABLE IF NOT EXISTS Programme_Minor_Enrollments (
+    Student_ID INTEGER,
+    Programme_Code TEXT,
+    Enroll_DT TEXT NOT NULL,
+    Status TEXT DEFAULT 'Enrolled',
+    PRIMARY KEY (Student_ID, Programme_Code),
+    FOREIGN KEY (Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (Programme_Code) REFERENCES Minor_Programmes(Programme_Code) ON DELETE CASCADE ON UPDATE CASCADE
+);
 -- 18. Major_Programmes_Courses (Junction Table)
 CREATE TABLE IF NOT EXISTS Major_Programmes_Courses (
     Programme_Code TEXT,
