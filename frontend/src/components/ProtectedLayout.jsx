@@ -25,6 +25,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
 import BadgeIcon from '@mui/icons-material/Badge';
 import LockReset from '@mui/icons-material/LockReset'
+import DomainIcon from '@mui/icons-material/Domain';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useAuth } from '../context/AuthContext';
 import {logout} from '../utils/logout'
@@ -211,8 +212,22 @@ export default function ProtectedLayout() {
                     </MenuItem>
 
                     <Divider sx={{ my: 0.5 }} />
-
                   <MenuItem
+                      onClick={() => {
+                        setAnchorEl(null);
+                         navigate('/department/' + user?.DID);
+                       
+                      }}
+                    >
+                      <ListItemIcon>
+                        <DomainIcon fontSize="small" />
+                      </ListItemIcon>
+                      My Department
+                    </MenuItem>
+
+     
+                    <Divider sx={{ my: 0.5 }} />
+                               <MenuItem
                       onClick={() => {
                         setAnchorEl(null);
                          navigate('/password-change');
@@ -225,8 +240,8 @@ export default function ProtectedLayout() {
                       Change Password
                     </MenuItem>
 
-                    <Divider sx={{ my: 0.5 }} />
 
+                    <Divider sx={{ my: 0.5 }} />
                     <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
                       <ListItemIcon sx={{ color: 'error.main' }}>
                         <LogoutIcon fontSize="small" />

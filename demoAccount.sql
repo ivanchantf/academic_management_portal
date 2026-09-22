@@ -1,8 +1,9 @@
-INSERT INTO Departments (Name, Address, Phone_No)
+INSERT INTO Departments (Name, Address, Phone_No,Photo_Path)
 VALUES (
     'Department of Computer Science',
     '8/F, Academic Building, Main Campus',
-    '+852 34117000'
+    '+852 34117000',
+	'dept/cs.jpg'
 );
 --------------DEMO staff
 INSERT INTO Users (

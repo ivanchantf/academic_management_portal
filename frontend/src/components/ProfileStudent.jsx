@@ -18,7 +18,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import EditIcon from '@mui/icons-material/Edit';
 import SchoolIcon from '@mui/icons-material/School';
 import LockIcon from '@mui/icons-material/Lock';
-
+import { Link } from 'react-router-dom';
 export default function ProfileStudent() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -85,7 +85,7 @@ export default function ProfileStudent() {
           Phone_No: data.profile.Phone_No || '',
           Address: data.profile.Address || '',
           Emergency_Contact_Person: data.profile.Emergency_Contact_Person || '',
-          Emergency_Phone_No: data.profile.Emergency_Phone_No || '',
+          Emergency_Phone_No: data.profile.Emergency_Phone_No || ''
         });
       } else {
         throw new Error('Invalid data structure received');
@@ -280,7 +280,9 @@ export default function ProfileStudent() {
                 size="small"
                 variant="outlined"
               />
-              <Chip label={formData.Department_Name} size="small" color="default" />
+             
+                 <Chip label={formData.Department_Name} size="small" color="default" />
+               
             </Box>
           </Box>
         </Box>

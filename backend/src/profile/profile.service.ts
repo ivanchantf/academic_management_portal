@@ -19,7 +19,8 @@ Users.Email,
 Users.Emergency_Contact_Person,
 Users.Emergency_Phone_No,
 Users.Entry_DT,
-Departments.Name As Department_Name
+Departments.Name As Department_Name,
+Departments.DID  As DID
 
 from Students 
 JOIN Users ON Users.User_ID=Students.User_ID

@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS Departments (
     DID INTEGER PRIMARY KEY AUTOINCREMENT,
     Name TEXT NOT NULL,
     Address TEXT,
-    Phone_No TEXT
+    Phone_No TEXT,
+	Photo_Path TEXT
 );
 
 -- 2. Users
