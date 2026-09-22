@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ProfileStaff from './components/ProfileStaff';
 import ProfileStudent from './components/ProfileStudent';
+import PasswordChange from './components/PasswordChange';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -32,8 +33,7 @@ function AppRoutes() {
         <Route element={<ProtectedLayout/>}>
         {/* both STAFF and STUDENT Route */}
           <Route path="/dashboard" element={<Dashboard user={user} />} />
-     
-
+          <Route path="/password-change" element={<PasswordChange user={user} />} />
           {/* Staff-Only Route */}
           <Route element={<RequireRole user={user} allowedRole="Staff" />}>
             <Route path="/abc" element={<h1>This Page is for Staff Only</h1>} />

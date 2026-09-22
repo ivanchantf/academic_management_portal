@@ -1,9 +1,10 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit, Req } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService  {
+
   constructor(private dataSource: DataSource, private jwtService: JwtService) {}
   private readonly saltRounds = 10;
 
@@ -52,4 +53,17 @@ WHERE Accounts.Username = ?;`, [username])
 
     return { success: true, user: userWithoutPassword, token };
   }
+
+  async changePassword(user: any, oldPassword: string, newPassword: string) {
+    console.log('change password is called')
+    console.log(user)
+    let account = await this.dataSource.query(`SELECT * FROM Accounts WHERE Accounts.Username = ?;`, [user.Username])
+    if(!await this.comparePassword(oldPassword,account[0].PasswordHash )){
+      return{success:false,message:'Incorrect password'};
+    }
+    let hashedPassword=await this.hashPassword(newPassword);
+    let res= await this.dataSource.query(`UPDATE Accounts SET PasswordHash=? WHERE Username=?;`, [hashedPassword, user.Username])
+    return{success:true,message:'Password changed successfully'};
+  }
+  
 }

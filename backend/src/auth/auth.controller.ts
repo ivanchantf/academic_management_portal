@@ -35,6 +35,10 @@ export class AuthController {
   }
 
 
+  
+
+
+
 // --- LOGOUT ENDPOINT ---
   @Post('logout')
   @HttpCode(HttpStatus.OK)
@@ -48,6 +52,16 @@ export class AuthController {
       success: true,
       message: 'Logout successful',
     };
+  }
+
+
+
+  @Post('change-password')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async changePassword(@Req() req: any,@Body() passwordBody:{newPassword:string,oldPassword:string}) {
+    // req.user is automatically populated by AuthGuard
+    let res = await this.authService.changePassword(req.user,passwordBody.oldPassword,passwordBody.newPassword);
+   return res
   }
 
   // --- CHECK IDENTITY ENDPOINT ---

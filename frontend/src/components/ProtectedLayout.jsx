@@ -24,8 +24,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import SchoolIcon from '@mui/icons-material/School';
 import BadgeIcon from '@mui/icons-material/Badge';
+import LockReset from '@mui/icons-material/LockReset'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useAuth } from '../context/AuthContext';
+import {logout} from '../utils/logout'
+
 
 export default function ProtectedLayout() {
   const navigate = useNavigate();
@@ -44,16 +47,7 @@ export default function ProtectedLayout() {
 
   const handleLogout = async () => {
     setAnchorEl(null);
-    try {
-      await fetch(`${import.meta.env.VITE_API_PATH}/auth/logout`, {
-        method: 'POST',
-        credentials: 'include',
-      });
-    } catch (err) {
-      console.error('Logout error:', err);
-    } finally {
-      navigate('/login');
-    }
+    logout(navigate('/login'))
   };
 
   return (
@@ -214,6 +208,21 @@ export default function ProtectedLayout() {
                         <PersonIcon fontSize="small" />
                       </ListItemIcon>
                       Profile
+                    </MenuItem>
+
+                    <Divider sx={{ my: 0.5 }} />
+
+                  <MenuItem
+                      onClick={() => {
+                        setAnchorEl(null);
+                         navigate('/password-change');
+                       
+                      }}
+                    >
+                      <ListItemIcon>
+                        <LockReset fontSize="small" />
+                      </ListItemIcon>
+                      Change Password
                     </MenuItem>
 
                     <Divider sx={{ my: 0.5 }} />
