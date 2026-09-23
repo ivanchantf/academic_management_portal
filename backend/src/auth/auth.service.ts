@@ -166,7 +166,8 @@ async listAccounts(user: any) {
     Staffs.Office_No,
     Staffs.Office_Address,
     Students.Student_ID,
-    Students.CGPA
+    Students.CGPA,
+    Departments.Name AS DepartmentName
 
 FROM Accounts
 JOIN Users 
@@ -174,7 +175,9 @@ JOIN Users
 LEFT JOIN Staffs 
     ON Users.User_ID = Staffs.User_ID
 LEFT JOIN Students 
-    ON Users.User_ID = Students.User_ID;`);
+    ON Users.User_ID = Students.User_ID
+    LEFT JOIN Departments
+    ON Users.DID = Departments.DID`);
 
   return query;
 }

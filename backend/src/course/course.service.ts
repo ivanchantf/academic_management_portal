@@ -42,6 +42,37 @@ export class CourseService {
       message: 'Course updated successfully'
     };
   }
+async getTeacher(courseCode: string): Promise<string[]> {
+  const teachers = await this.dataSource.query(
+    `SELECT Staff_ID FROM Teach WHERE Course_Code = ?`, 
+    [courseCode]
+  );
 
+  return teachers.map((row: { Staff_ID: string }) => row.Staff_ID);
+}
+async assignTeachers(user: any, body: any): Promise<void> {
+  await this.dataSource.transaction(async (transactionalEntityManager) => {
+    const { courseCode, teacherIds } = body;
+    // 1. Delete existing teacher assignments for the course
+    await transactionalEntityManager.query(
+      `DELETE FROM Teach WHERE Course_Code = ?`,
+      [courseCode]
+    );
+
+    // 2. Early return if there are no new teachers to insert
+    if (!teacherIds || teacherIds.length === 0) {
+      return;
+    }
+
+    // 3. Construct a single bulk INSERT statement
+    const placeholders = teacherIds.map(() => `(?, ?)`).join(', ');
+    const values = teacherIds.flatMap((teacherId: string) => [courseCode, teacherId]);
+
+    await transactionalEntityManager.query(
+      `INSERT INTO Teach (Course_Code, Staff_ID) VALUES ${placeholders}`,
+      values
+    );
+  });
+}
   
 }

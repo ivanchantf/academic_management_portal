@@ -182,7 +182,7 @@ export default function ViewAllAccounts() {
               <DetailItem label="Date of Birth" value={selectedAccount.DOB} />
               <DetailItem label="Phone No." value={selectedAccount.Phone_No} />
               <DetailItem label="Email" value={selectedAccount.Email} />
-              <DetailItem label="Department ID (DID)" value={selectedAccount.DID} />
+              <DetailItem label="Department" value={selectedAccount.DepartmentName} />
               <DetailItem label="Entry Date" value={selectedAccount.Entry_DT} />
               <DetailItem label="Emergency Contact" value={selectedAccount.Emergency_Contact_Person} />
               <DetailItem label="Emergency Phone" value={selectedAccount.Emergency_Phone_No} />

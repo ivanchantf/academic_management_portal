@@ -61,5 +61,35 @@ export class CourseController {
 
 
 
+    @Get('/get-teacher/:courseCode')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getTeacher(@Req() req: any,@Param('courseCode') courseCode: string) {
+    // req.user is automatically populated by AuthGuard
+    let teacher= await this.courseService.getTeacher(courseCode);
+    console.log('teacher:', teacher); // Log the department for debugging
+    if(teacher.length === 0){
+      return {
+        success: false,
+        teachers: []
+    }
+  }
+    return {
+      success: true,
+      teachers: teacher,
+    };
+  }
+  @Post('/assign-teachers')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async assignTeachers(@Req() req: any,@Body() body: any) {
+    // req.user is automatically populated by AuthGuard
+    let insert= await this.courseService.assignTeachers(req.user,body);
+    console.log('insert:', insert); // Log the course for debugging
+    
+    return {
+      success: true,
+      teachers: insert,
+    };
+  }
+
 
 }

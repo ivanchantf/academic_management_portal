@@ -165,6 +165,7 @@ CREATE TABLE IF NOT EXISTS Teach (
     FOREIGN KEY (Course_Code) REFERENCES Courses(Course_Code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
 -- 16. Course_Enrollments (Junction Table)
 CREATE TABLE IF NOT EXISTS Course_Enrollments (
     Student_ID INTEGER,

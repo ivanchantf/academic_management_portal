@@ -8,7 +8,8 @@ import CreateCourses from './CreateCourses';
 import UpdateCourses from './UpdateCourses';
 import CreateProgrammes from './CreateProgammes';
 import UpdateProgrammes from './UpdateProgrammes';
-
+import ArrangeCourseTeacher from './ArrangeCourseTeacher';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 // Placeholder Sub-Components (Replace or import from their respective files)
 
 
@@ -88,6 +89,7 @@ export default function CoursesProgramsManagement({ user }: { user: any }) {
           >
             <Tab icon={<AddBookIcon />} iconPosition="start" label="Create Courses" />
             <Tab icon={<EditBookIcon />} iconPosition="start" label="Update Courses" />
+            <Tab icon={<AccountBoxIcon />} iconPosition="start" label="Arrange Course Teacher" />
             <Tab icon={<AddSchoolIcon />} iconPosition="start" label="Create Programmes" />
             <Tab icon={<EditSchoolIcon />} iconPosition="start" label="Update Programmes" />
           </Tabs>
@@ -103,10 +105,14 @@ export default function CoursesProgramsManagement({ user }: { user: any }) {
         </CustomTabPanel>
 
         <CustomTabPanel value={tabIndex} index={2}>
-          <CreateProgrammes />
+          <ArrangeCourseTeacher />
         </CustomTabPanel>
 
         <CustomTabPanel value={tabIndex} index={3}>
+          <CreateProgrammes />
+        </CustomTabPanel>
+
+        <CustomTabPanel value={tabIndex} index={4}>
           <UpdateProgrammes />
         </CustomTabPanel>
       </Paper>
