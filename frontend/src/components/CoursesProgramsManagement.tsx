@@ -7,6 +7,7 @@ import EditSchoolIcon from '@mui/icons-material/HistoryEdu';
 import CreateCourses from './CreateCourses';
 import UpdateCourses from './UpdateCourses';
 import CreateProgrammes from './CreateProgammes';
+import UpdateProgrammes from './UpdateProgrammes';
 
 // Placeholder Sub-Components (Replace or import from their respective files)
 
@@ -14,13 +15,7 @@ import CreateProgrammes from './CreateProgammes';
 
 
 
-function UpdateProgrammes() {
-  return (
-    <Box p={3}>
-      <Typography variant="h6">Update Programmes Component</Typography>
-    </Box>
-  );
-}
+
 
 interface TabPanelProps {
   children?: React.ReactNode;

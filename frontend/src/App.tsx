@@ -13,6 +13,7 @@ import PasswordChange from './components/PasswordChange';
 import Department from './components/Department';
 import StudentEnrollment from './components/StudentEnrollment';
 import CoursesProgramsManagement from './components/CoursesProgramsManagement';
+import CreateNewAccount from './components/CreateNewAccount';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -42,10 +43,11 @@ function AppRoutes() {
 
           {/* Staff-Only Route */}
           <Route element={<RequireRole user={user} allowedRole="Staff" />}>
-            <Route path="/abc" element={<h1>This Page is for Staff Only</h1>} />
+           
             <Route path="/profile-staff" element={<ProfileStaff user={user} />} />
             <Route path="/student-enrollment" element={<StudentEnrollment user={user} />} />
             <Route path="/courses-programs-management" element={<CoursesProgramsManagement  user={user} />} />
+            <Route path="account-creation" element={<CreateNewAccount user={user} />} />
           </Route>
 
           {/* Student-Only Route */}

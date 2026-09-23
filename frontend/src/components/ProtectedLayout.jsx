@@ -107,7 +107,7 @@ export default function ProtectedLayout() {
                 Home
               </Button>
 
-              {user?.UserType === 'Staff' && (
+              {/* {user?.UserType === 'Staff' && (
                 <Button
                   component={RouterLink}
                   to="/abc"
@@ -127,7 +127,7 @@ export default function ProtectedLayout() {
                 >
                   Student Only
                 </Button>
-              )}
+              )} */}
             </Box>
           </Box>
 

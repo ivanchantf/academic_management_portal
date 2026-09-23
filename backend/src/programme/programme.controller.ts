@@ -8,6 +8,21 @@ import {  ProgrammeService } from './programme.service.js';
 export class ProgrammeController {
   constructor(private  programmeService: ProgrammeService) {}
 
+
+  @Get('all-programmes-with-included-courses')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getAllProgrammeWithIncludedCourses(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let prog= await this.programmeService.getAllProgrammeWithIncludedCourses();
+
+    console.log('Programme:', prog); // Log the programme for debugging
+    return {
+      success: true,
+      programme: prog,
+    };
+  }
+
+
   
   @Get('all-major-programmes')
   @UseGuards(AuthGuard) // Blocks request if not logged in
@@ -47,6 +62,14 @@ export class ProgrammeController {
     return p;
   }
 
-
+  @Put('/update')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async updateProgramme(@Req() req: any,@Body() body: any) {
+    // req.user is automatically populated by AuthGuard
+    let p= await this.programmeService.updateProgramme(req.user,body);
+    console.log('update Programme result:', p); // Log the programme for debugging
+ 
+    return p;
+  }
 
 }

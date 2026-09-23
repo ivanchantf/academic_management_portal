@@ -22,7 +22,7 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import PersonIcon from '@mui/icons-material/Person';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
 
@@ -80,11 +80,11 @@ export default function Dashboard({ user }) {
       roles: ['Staff']
     },
     {
-      title: 'Staff Management (ABC)',
-      description: 'Access administrative features and department controls.',
-      icon: <PeopleIcon sx={{ fontSize: 32 }} />,
-      color: '#9c27b0',
-      path: '/abc',
+      title: 'Create new accounts',
+      description: 'Create new user accounts for students and staff.',
+      icon: <PersonAddAlt1Icon sx={{ fontSize: 32 }} />,
+      color: '#ED6C02',
+      path: '/account-creation',
       roles: ['Staff']
     },
         {

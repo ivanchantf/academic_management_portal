@@ -74,4 +74,36 @@ export class AuthController {
       user: req.user,
     };
   }
+
+
+    @Post('create-account')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async createAccount(@Req() req: any,@Body() accountBody:{address: string, department: string, dob: string, email: string, emergencyContactPerson: string, emergencyPhoneNo: string, entryDt: string, gender: string, hkid: string, name: string, password: string, phoneNo: string, userType: string, username: string, officeAddress: string, officeNo: string}) {
+    // req.user is automatically populated by AuthGuard
+    let res = await this.authService.createAccount(req.user,accountBody);
+    console.log('Create Account Result:', res); // Log the result for debugging
+   return res
+  }
+
+
+
+  @Get('list-accounts')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async listAccounts(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+
+    let accounts = await this.authService.listAccounts(req.user);
+    if (!accounts) {
+      return {
+        success: false,
+        message: 'Failed to list accounts',
+      };
+    }
+    return {
+      success: true,
+      accounts: accounts,
+    };
+  }
+
+
 }
