@@ -22,6 +22,7 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import PersonIcon from '@mui/icons-material/Person';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
 
@@ -62,6 +63,14 @@ export default function Dashboard({ user }) {
     },
 
     // --- Staff Functions ---
+        {
+      title: 'Courses & Programmes Management',
+      description: 'Create new courses, new programs, and manage existing ones.',
+      icon: <ClassIcon sx={{ fontSize: 32 }} />,
+      color: '#009688',
+      path: '/courses-programs-management',
+      roles: ['Staff']
+    },
     {
       title: 'Student Enrollment Management',
       description: 'Manage student enrollments in Major and Minor Programs.',

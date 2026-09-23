@@ -14,5 +14,11 @@ export class DepartmentService {
   }
 
 
+  async listDepartments() {
+    // Example implementation - replace with actual logic
+    console.log('Fetching all departments from the database...');
+    let departments= await this.dataSource.query(`Select * from Departments `);
+    return departments.length > 0 ? departments : [];
+  }
 
 }

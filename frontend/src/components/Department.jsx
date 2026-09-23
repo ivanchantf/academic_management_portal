@@ -29,7 +29,7 @@ export default function Department({ user }) {
       setError('');
 
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_PATH}/department/${did}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_PATH}/department/id/${did}`, {
           method: 'GET',
           credentials: 'include',
         });

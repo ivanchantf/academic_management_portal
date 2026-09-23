@@ -1,0 +1,82 @@
+INSERT INTO Courses (
+    Course_Code, 
+    Name, 
+    Description, 
+    Difficulty, 
+    Credits, 
+    Status, 
+    Created_DT, 
+    Created_Staff_ID, 
+    Offered_DID
+) VALUES
+-- =================================================================
+-- DID 1: Department of Computer Science (20 Records)
+-- =================================================================
+('CS101', 'Introduction to Computer Science', 'Foundations of computing, algorithms, and problem-solving.', 'B1', 3, 'ACTIVE', '2024-01-10 09:00:00', 2, 1),
+('CS102', 'Programming Fundamentals', 'Basic syntax, control structures, and procedural programming.', 'B1', 4, 'ACTIVE', '2024-01-11 10:30:00', 3, 1),
+('CS201', 'Data Structures', 'Arrays, linked lists, stacks, queues, trees, and graphs.', 'B2', 4, 'ACTIVE', '2024-01-12 11:15:00', 4, 1),
+('CS202', 'Computer Architecture', 'Logic design, instruction sets, CPU structures, and memory.', 'B2', 3, 'ACTIVE', '2024-01-15 14:00:00', 5, 1),
+('CS301', 'Algorithms and Complexity', 'Sorting, searching, dynamic programming, and NP-completeness.', 'B3', 4, 'ACTIVE', '2024-01-18 08:45:00', 6, 1),
+('CS302', 'Database Systems', 'Relational database design, SQL querying, and transaction processing.', 'B3', 3, 'ACTIVE', '2024-01-20 13:20:00', 2, 1),
+('CS303', 'Operating Systems', 'Processes, threads, memory management, and file systems.', 'B3', 4, 'ACTIVE', '2024-01-22 15:30:00', 3, 1),
+('CS401', 'Software Engineering', 'Software life cycle models, Agile methodologies, and system design.', 'P4', 3, 'ACTIVE', '2024-01-25 10:00:00', 4, 1),
+('CS402', 'Computer Networks', 'OSI model, TCP/IP protocol suite, routing algorithms, and security.', 'P4', 3, 'ACTIVE', '2024-01-28 11:00:00', 5, 1),
+('CS403', 'Web Development', 'Frontend and backend Web technologies, APIs, and frameworks.', 'P4', 3, 'ACTIVE', '2024-02-01 09:30:00', 6, 1),
+('CS501', 'Artificial Intelligence', 'Knowledge representation, search algorithms, and expert systems.', 'P5', 4, 'ACTIVE', '2024-02-03 14:15:00', 2, 1),
+('CS502', 'Machine Learning', 'Supervised and unsupervised learning, decision trees, and neural nets.', 'P5', 4, 'ACTIVE', '2024-02-05 16:00:00', 3, 1),
+('CS503', 'Cybersecurity Principles', 'Cryptography, network security, authentication, and threat analysis.', 'P5', 3, 'ACTIVE', '2024-02-08 10:45:00', 4, 1),
+('CS601', 'Cloud Computing', 'Distributed systems, virtualization, microservices, and cloud platforms.', 'P6', 3, 'ACTIVE', '2024-02-10 11:30:00', 5, 1),
+('CS602', 'Human-Computer Interaction', 'User interface design, usability testing, and interaction paradigms.', 'P6', 3, 'ACTIVE', '2024-02-12 13:00:00', 6, 1),
+('CS701', 'Advanced Machine Learning', 'Deep learning architectures, GANs, reinforcement learning.', 'R7', 4, 'ACTIVE', '2024-02-15 09:15:00', 2, 1),
+('CS702', 'Parallel Computing', 'Multithreading, GPU architecture, OpenMP, and MPI programming.', 'R7', 3, 'ACTIVE', '2024-02-18 15:00:00', 3, 1),
+('CS801', 'Distributed Systems Research', 'Consensus algorithms, fault tolerance, and peer-to-peer networks.', 'R8', 3, 'ACTIVE', '2024-02-20 10:00:00', 4, 1),
+('CS802', 'Quantum Computing Seminar', 'Qubits, quantum gates, Shor algorithm, and quantum information theory.', 'R8', 3, 'ACTIVE', '2024-02-22 14:30:00', 5, 1),
+('CS901', 'Computer Science Dissertation Seminar', 'Doctoral research presentation and critical analysis of ongoing work.', 'R9', 6, 'ACTIVE', '2024-02-25 16:45:00', 6, 1),
+
+-- =================================================================
+-- DID 2: Department of Business Administration (20 Records)
+-- =================================================================
+('BUS101', 'Introduction to Business', 'Overview of business functions, economics, and corporate environments.', 'B1', 3, 'ACTIVE', '2024-01-10 09:00:00', 2, 2),
+('BUS102', 'Business Communications', 'Professional writing, presentation skills, and workplace dynamic.', 'B1', 3, 'ACTIVE', '2024-01-11 10:30:00', 3, 2),
+('BUS201', 'Financial Accounting', 'Principles of recordkeeping, balance sheets, and income statements.', 'B2', 3, 'ACTIVE', '2024-01-12 11:15:00', 4, 2),
+('BUS202', 'Principles of Marketing', 'Target demographics, product positioning, pricing, and promotion.', 'B2', 3, 'ACTIVE', '2024-01-15 14:00:00', 5, 2),
+('BUS301', 'Managerial Accounting', 'Cost analysis, budgeting, and financial decision-making for managers.', 'B3', 3, 'ACTIVE', '2024-01-18 08:45:00', 6, 2),
+('BUS302', 'Corporate Finance', 'Capital structure, risk management, dividend policy, and valuation.', 'B3', 4, 'ACTIVE', '2024-01-20 13:20:00', 2, 2),
+('BUS303', 'Organizational Behavior', 'Individual and group dynamics, motivation, leadership styles.', 'B3', 3, 'ACTIVE', '2024-01-22 15:30:00', 3, 2),
+('BUS401', 'Operations Management', 'Supply chain management, process design, and quality control.', 'P4', 3, 'ACTIVE', '2024-01-25 10:00:00', 4, 2),
+('BUS402', 'Business Ethics and Law', 'Legal environment of business, corporate governance, and ethics.', 'P4', 3, 'ACTIVE', '2024-01-28 11:00:00', 5, 2),
+('BUS403', 'Strategic Management', 'Competitive advantage, industry analysis, and strategy execution.', 'P4', 4, 'ACTIVE', '2024-02-01 09:30:00', 6, 2),
+('BUS501', 'Entrepreneurship', 'Venture creation, business planning, and startup funding strategies.', 'P5', 3, 'ACTIVE', '2024-02-03 14:15:00', 2, 2),
+('BUS502', 'International Business', 'Global markets, cross-cultural negotiation, and trade policies.', 'P5', 3, 'ACTIVE', '2024-02-05 16:00:00', 3, 2),
+('BUS503', 'Human Resource Management', 'Talent acquisition, performance management, and labor relations.', 'P5', 3, 'ACTIVE', '2024-02-08 10:45:00', 4, 2),
+('BUS601', 'Digital Marketing Strategy', 'SEO, social media marketing, content strategies, and web analytics.', 'P6', 3, 'ACTIVE', '2024-02-10 11:30:00', 5, 2),
+('BUS602', 'Business Intelligence and Analytics', 'Data-driven decision making, dashboards, and predictive modeling.', 'P6', 4, 'ACTIVE', '2024-02-12 13:00:00', 6, 2),
+('BUS701', 'Executive Leadership', 'Advanced theories of executive leadership and organizational change.', 'R7', 3, 'ACTIVE', '2024-02-15 09:15:00', 2, 2),
+('BUS702', 'Global Supply Chain Management', 'Strategic logistics, international procurement, and risk mitigation.', 'R7', 3, 'ACTIVE', '2024-02-18 15:00:00', 3, 2),
+('BUS801', 'Quantitative Business Research', 'Empirical methods, survey design, and statistical validation in management.', 'R8', 4, 'ACTIVE', '2024-02-20 10:00:00', 4, 2),
+('BUS802', 'Corporate Restructuring', 'Mergers, acquisitions, spin-offs, and financial distress models.', 'R8', 3, 'ACTIVE', '2024-02-22 14:30:00', 5, 2),
+('BUS901', 'Doctoral Business Administration Seminar', 'Current research topics in business theory and practice.', 'R9', 6, 'ACTIVE', '2024-02-25 16:45:00', 6, 2),
+
+-- =================================================================
+-- DID 3: Department of Mathematics (20 Records)
+-- =================================================================
+('MATH101', 'Calculus I', 'Limits, derivatives, continuity, and basic integration techniques.', 'B1', 4, 'ACTIVE', '2024-01-10 09:00:00', 2, 3),
+('MATH102', 'College Algebra', 'Polynomials, rational functions, exponential equations, and systems.', 'B1', 3, 'ACTIVE', '2024-01-11 10:30:00', 3, 3),
+('MATH201', 'Calculus II', 'Integration applications, techniques, sequences, and series.', 'B2', 4, 'ACTIVE', '2024-01-12 11:15:00', 4, 3),
+('MATH202', 'Linear Algebra', 'Vector spaces, matrices, determinants, eigenvalues, and eigenvectors.', 'B2', 3, 'ACTIVE', '2024-01-15 14:00:00', 5, 3),
+('MATH301', 'Multivariable Calculus', 'Partial derivatives, multiple integrals, vector calculus, and theorems.', 'B3', 4, 'ACTIVE', '2024-01-18 08:45:00', 6, 3),
+('MATH302', 'Differential Equations', 'First-order and higher-order ODEs, Laplace transforms, power series.', 'B3', 3, 'ACTIVE', '2024-01-20 13:20:00', 2, 3),
+('MATH303', 'Discrete Mathematics', 'Logic, set theory, combinatorics, graph theory, and proof methods.', 'B3', 3, 'ACTIVE', '2024-01-22 15:30:00', 3, 3),
+('MATH401', 'Probability and Statistics', 'Sample spaces, probability distributions, variance, hypothesis testing.', 'P4', 3, 'ACTIVE', '2024-01-25 10:00:00', 4, 3),
+('MATH402', 'Abstract Algebra', 'Group theory, rings, integral domains, and fields.', 'P4', 3, 'ACTIVE', '2024-01-28 11:00:00', 5, 3),
+('MATH403', 'Real Analysis', 'Topology of real line, limits, continuity, differentiability, integration.', 'P4', 4, 'ACTIVE', '2024-02-01 09:30:00', 6, 3),
+('MATH501', 'Complex Variables', 'Analytic functions, contour integration, Cauchy theorem, residue theory.', 'P5', 3, 'ACTIVE', '2024-02-03 14:15:00', 2, 3),
+('MATH502', 'Numerical Analysis', 'Algorithms for solving algebraic equations, interpolation, and calculus.', 'P5', 3, 'ACTIVE', '2024-02-05 16:00:00', 3, 3),
+('MATH503', 'Mathematical Modeling', 'Formulation and analysis of models from physical and social sciences.', 'P5', 3, 'ACTIVE', '2024-02-08 10:45:00', 4, 3),
+('MATH601', 'Partial Differential Equations', 'Fourier series, heat equation, wave equation, Laplace equation.', 'P6', 3, 'ACTIVE', '2024-02-10 11:30:00', 5, 3),
+('MATH602', 'Topology', 'Metric spaces, topological spaces, continuity, compactness, connectedness.', 'P6', 3, 'ACTIVE', '2024-02-12 13:00:00', 6, 3),
+('MATH701', 'Measure Theory', 'Lebesgue measure, measurable functions, integration, Lp spaces.', 'R7', 4, 'ACTIVE', '2024-02-15 09:15:00', 2, 3),
+('MATH702', 'Differential Geometry', 'Curves and surfaces in space, manifolds, Riemannian geometry.', 'R7', 3, 'ACTIVE', '2024-02-18 15:00:00', 3, 3),
+('MATH801', 'Stochastic Processes', 'Markov chains, Poisson processes, Brownian motion, and martingales.', 'R8', 4, 'ACTIVE', '2024-02-20 10:00:00', 4, 3),
+('MATH802', 'Functional Analysis', 'Banach spaces, Hilbert spaces, linear operators, spectral theory.', 'R8', 3, 'ACTIVE', '2024-02-22 14:30:00', 5, 3),
+('MATH901', 'Advanced Mathematics Seminar', 'Research colloquium presenting contemporary breakthroughs in mathematics.', 'R9', 6, 'ACTIVE', '2024-02-25 16:45:00', 6, 3);

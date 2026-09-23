@@ -107,13 +107,13 @@ VALUES
 -- 1. Insert into Programmes (Parent Table)
 -- ----------------------------------------------------
 INSERT INTO Programmes (Programme_Code, Title, Credits_Required, Status, DID) VALUES
-('BS-CS', 'BSc in Computer Science', 120, 'Active', 1),
-('BS-DS', 'BSc in Data Science', 120, 'Active', 1),
-('BA-BUS', 'BBA in Business Administration', 120, 'Active', 2),
-('BS-MATH', 'BSc in Mathematics', 120, 'Active', 3),
-('MN-CS', 'Minor in Computer Science', 18, 'Active', 1),
-('MN-MATH', 'Minor in Mathematics', 15, 'Active', 3),
-('MN-MKT', 'Minor in Marketing', 18, 'Active', 2);
+('BS-CS', 'BSc in Computer Science', 120, 'ACTIVE', 1),
+('BS-DS', 'BSc in Data Science', 120, 'ACTIVE', 1),
+('BA-BUS', 'BBA in Business Administration', 120, 'ACTIVE', 2),
+('BS-MATH', 'BSc in Mathematics', 120, 'ACTIVE', 3),
+('MN-CS', 'Minor in Computer Science', 18, 'ACTIVE', 1),
+('MN-MATH', 'Minor in Mathematics', 15, 'ACTIVE', 3),
+('MN-MKT', 'Minor in Marketing', 18, 'ACTIVE', 2);
 
 -- ----------------------------------------------------
 -- 2. Insert into Major_Programmes (Child Table)

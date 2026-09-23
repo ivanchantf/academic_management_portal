@@ -9,7 +9,7 @@ export class DepartmentController {
   constructor(private  departmentService: DepartmentService) {}
 
   
-  @Get('/:did')
+  @Get('/id/:did')
   @UseGuards(AuthGuard) // Blocks request if not logged in
   async checkDept(@Req() req: any,@Param('did') did: string) {
     // req.user is automatically populated by AuthGuard
@@ -18,6 +18,24 @@ export class DepartmentController {
     if(!dept){
       return {
         success: false
+    }
+  }
+    return {
+      success: true,
+      department: dept,
+    };
+  }
+
+  @Get('/list')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async listDept(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let dept= await this.departmentService.listDepartments();
+    console.log('Department:', dept); // Log the department for debugging
+    if(dept.length === 0){
+      return {
+        success: false,
+        department: []
     }
   }
     return {

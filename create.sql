@@ -101,15 +101,19 @@ CREATE TABLE IF NOT EXISTS Minor_Programmes (
 CREATE TABLE IF NOT EXISTS Courses (
     Course_Code TEXT PRIMARY KEY,
     Name TEXT NOT NULL,
+	Description TEXT,
     Difficulty TEXT,
     Credits INTEGER NOT NULL CHECK (Credits > 0),
     Status TEXT DEFAULT 'Active',
     Created_DT TEXT NOT NULL,
     Created_Staff_ID INTEGER,
+	Updated_DT TEXT ,
+    Updated_Staff_ID INTEGER,
     Offered_DID INTEGER NOT NULL,
     FOREIGN KEY (Created_Staff_ID) REFERENCES Staffs(Staff_ID) ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (Offered_DID) REFERENCES Departments(DID) ON DELETE RESTRICT ON UPDATE CASCADE
-);
+	FOREIGN KEY (Updated_Staff_ID) REFERENCES Staffs(Staff_ID) ON DELETE SET NULL ON UPDATE CASCADE
+	);
 
 -- 12. Credit_Overload_Requests
 CREATE TABLE IF NOT EXISTS Credit_Overload_Requests (

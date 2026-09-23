@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 
 
 import { AuthGuard } from '../auth/auth.guard.js';
@@ -35,6 +35,18 @@ export class ProgrammeController {
       programme: prog,
     };
   }
+
+
+  @Post('/create')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async createProgamme(@Req() req: any,@Body() body: any) {
+    // req.user is automatically populated by AuthGuard
+    let p= await this.programmeService.createProgramme(req.user,body);
+    console.log('create Programme result:', p); // Log the programme for debugging
+ 
+    return p;
+  }
+
 
 
 }
