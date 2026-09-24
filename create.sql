@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS Programmes (
     Programme_Code TEXT PRIMARY KEY,
     Title TEXT NOT NULL,
     Credits_Required INTEGER NOT NULL CHECK (Credits_Required > 0),
-    Status TEXT DEFAULT 'Active',
+    Status TEXT DEFAULT 'ACTIVE',
     DID INTEGER NOT NULL,
     FOREIGN KEY (DID) REFERENCES Departments(DID) ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS Courses (
 	Description TEXT,
     Difficulty TEXT,
     Credits INTEGER NOT NULL CHECK (Credits > 0),
-    Status TEXT DEFAULT 'Active',
+    Status TEXT DEFAULT 'ACTIVE',
     Created_DT TEXT NOT NULL,
     Created_Staff_ID INTEGER,
 	Updated_DT TEXT ,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS Courses (
 CREATE TABLE IF NOT EXISTS Credit_Overload_Requests (
     Request_ID INTEGER PRIMARY KEY AUTOINCREMENT,
     Reason TEXT,
-    Status TEXT DEFAULT 'Pending',
+    Status TEXT DEFAULT 'PENDING',
     Submit_DT TEXT NOT NULL,
     Process_DT TEXT,
     Submitted_Student_ID INTEGER NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS Mitigation_Requests (
     Request_ID INTEGER PRIMARY KEY AUTOINCREMENT,
     Date_Of_Assessment TEXT NOT NULL,
     Reason TEXT,
-    Status TEXT DEFAULT 'Pending',
+    Status TEXT DEFAULT 'PENDING',
     Affecting_Course_Code TEXT NOT NULL,
     Submit_DT TEXT NOT NULL,
     Process_DT TEXT,
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS Programme_Major_Enrollments (
     Student_ID INTEGER,
     Programme_Code TEXT,
     Enroll_DT TEXT NOT NULL,
-    Status TEXT DEFAULT 'Enrolled',
+    Status TEXT DEFAULT 'ENROLLED',
     PRIMARY KEY (Student_ID, Programme_Code),
     FOREIGN KEY (Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Programme_Code) REFERENCES Major_Programmes(Programme_Code) ON DELETE CASCADE ON UPDATE CASCADE
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS Programme_Minor_Enrollments (
     Student_ID INTEGER,
     Programme_Code TEXT,
     Enroll_DT TEXT NOT NULL,
-    Status TEXT DEFAULT 'Enrolled',
+    Status TEXT DEFAULT 'ENROLLED',
     PRIMARY KEY (Student_ID, Programme_Code),
     FOREIGN KEY (Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Programme_Code) REFERENCES Minor_Programmes(Programme_Code) ON DELETE CASCADE ON UPDATE CASCADE

@@ -19,7 +19,7 @@ WHERE NOT EXISTS (
     SELECT 1 
     FROM Programme_Major_Enrollments pe
     JOIN Major_Programmes mp ON pe.Programme_Code = mp.Programme_Code
-    WHERE pe.Student_ID = s.Student_ID AND pe.Status = 'Enrolled'
+    WHERE pe.Student_ID = s.Student_ID AND pe.Status = 'ENROLLED'
 );`
     return await this.dataSource.query(query);
   }
@@ -31,7 +31,7 @@ WHERE NOT EXISTS (
   }
   async assignMinor(studentId: string, minorId: string) {
     //if no major enrollment, then cannot enroll in minor
-    let query1=`SELECT * FROM Programme_Major_Enrollments WHERE Student_ID=? AND Status='Enrolled';`;
+    let query1=`SELECT * FROM Programme_Major_Enrollments WHERE Student_ID=? AND Status='ENROLLED';`;
     let result= await this.dataSource.query(query1,[studentId]);
     if (result.length === 0) {
       return null; // Student has no major enrollment
@@ -53,7 +53,7 @@ WHERE NOT EXISTS (
     SELECT 1 
     FROM Programme_Minor_Enrollments pe
     JOIN Minor_Programmes mp ON pe.Programme_Code = mp.Programme_Code
-    WHERE pe.Student_ID = s.Student_ID AND pe.Status = 'Enrolled'
+    WHERE pe.Student_ID = s.Student_ID AND pe.Status = 'ENROLLED'
 );`
     return await this.dataSource.query(query);
   }

@@ -56,7 +56,7 @@ async getAllProgrammeWithIncludedCourses() {
     FROM Major_Programmes mp
     INNER JOIN Programmes p 
     ON mp.Programme_Code = p.Programme_Code
-    WHERE p.Status = 'Active'
+    WHERE p.Status = 'ACTIVE'
     ;`;
     return await this.dataSource.query(query);
   }
@@ -70,7 +70,7 @@ async getAllProgrammeWithIncludedCourses() {
     FROM Minor_Programmes mp
     INNER JOIN Programmes p 
     ON mp.Programme_Code = p.Programme_Code
-    WHERE p.Status = 'Active'
+    WHERE p.Status = 'ACTIVE'
     ;`;
     return await this.dataSource.query(query);
   }
