@@ -4,6 +4,23 @@
 A full-stack application for managing academic workflows, featuring separate frontend and backend architectures.
 
 ---
+## 🛠️ Tech Stack
+
+* **Frontend:** React JS 
+* **Backend:** NestJS Framework
+* **Database:** SQLite
+* **Package Manager:** `npm`
+
+
+
+---
+## Database Connection
+
+The database for this project is provided in `pjDB.db` \
+The backend is directly connecting to this db file for performing different kinds of DB operations.\
+\
+For easy manipulation of data, you can download [DB Browser for SQLite] (https://sqlitebrowser.org/dl/) for connecting to the DB.\
+If you want to create the same DB from scratch, please refer to `create.sql`, insertion statement can be found in `demoAccount.sql` and `insertCourses.sql` as well
 
 ## 📋 Prerequisites
 
@@ -24,7 +41,7 @@ node --version
 
 ---
 
-## 🚀 Getting Started
+## 🚀 How to run
 
 Follow the instructions below to set up and run both the frontend and backend applications in development mode.
 
@@ -59,11 +76,4 @@ npm run start:dev
 ```
 
 ---
-
-## 🛠️ Tech Stack
-
-* **Frontend:** React / Web Framework
-* **Backend:** Node.js / Express or NestJS
-* **Package Manager:** `npm`
-* **Database:** SQLite
 
