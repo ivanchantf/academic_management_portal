@@ -59,4 +59,13 @@ WHERE NOT EXISTS (
   }
 
 
-} 
+async getStudentsByProgramme(programmeCode: string) {
+  let query = `
+    SELECT Student_ID FROM Programme_Major_Enrollments WHERE Programme_Code = ?
+    UNION
+    SELECT Student_ID FROM Programme_Minor_Enrollments WHERE Programme_Code = ?
+  `;
+
+  return await this.dataSource.query(query, [programmeCode, programmeCode]);
+}
+}

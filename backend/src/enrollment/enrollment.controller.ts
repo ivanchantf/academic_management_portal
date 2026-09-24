@@ -70,4 +70,23 @@ export class EnrollmentController {
     };
   }
 
+    @Get('/get-students/:programmeCode/')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getStudentsByProgramme(@Param('programmeCode') programmeCode: string) {
+    let students = await this.enrollmentService.getStudentsByProgramme(programmeCode);
+   
+    return students.length > 0
+      ? {
+          success: true,
+          students: students,
+        }
+      : {
+          success: false,
+          message: 'No students found for the given programme code',
+          students: [],
+        };
+    
+  }
+  
+
 }

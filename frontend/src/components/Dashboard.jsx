@@ -23,6 +23,7 @@ import LockResetIcon from '@mui/icons-material/LockReset';
 import PersonIcon from '@mui/icons-material/Person';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SearchIcon from '@mui/icons-material/Search';
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
@@ -63,6 +64,14 @@ export default function Dashboard({ user }) {
       icon: <ClassIcon sx={{ fontSize: 32 }} />,
       color: '#009688',
       path: '/courses-programs-management',
+      roles: ['Staff']
+    },
+        {
+      title: 'Issue Time Tickets',
+      description: 'Issue time tickets for students to enroll in courses.',
+      icon: <AccessTimeIcon sx={{ fontSize: 32 }} />,
+      color: '#b7da39',
+      path: '/issue-time-tickets',
       roles: ['Staff']
     },
     {
