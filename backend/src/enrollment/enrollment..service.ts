@@ -68,4 +68,15 @@ async getStudentsByProgramme(programmeCode: string) {
 
   return await this.dataSource.query(query, [programmeCode, programmeCode]);
 }
+
+async getMyEnrolledCourse(user:any){
+  let query = `SELECT * From Students WHERE User_ID = ?`;
+  let student = await this.dataSource.query(query, [user.User_ID]);
+  let myStudentID = student[0].Student_ID;
+  let query2 = `SELECT * From Course_Enrollments 
+  JOIN Courses ON Course_Enrollments.Course_Code = Courses.Course_Code
+  WHERE Student_ID = ?`;
+  let myEnrolledCourses = await this.dataSource.query(query2, [myStudentID]);
+  return myEnrolledCourses;
+}
 }

@@ -87,6 +87,23 @@ export class EnrollmentController {
         };
     
   }
-  
+
+
+  @Get('my-enrolled-courses')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getMyEnrolledCourse(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    console.log('User:', req.user);
+    let courses= await this.enrollmentService.getMyEnrolledCourse(req.user);
+
+
+    return {
+      success: true,
+      students: courses,
+    };
+  }
+
+
+
 
 }

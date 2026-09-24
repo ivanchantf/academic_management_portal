@@ -13,6 +13,7 @@ import { join } from 'path';
 import { ProgrammeModule } from './programme/programme.module.js';
 import { CourseModule } from './course/course.module.js';
 import { TimeticketModule } from './timeticket/timeticket.module.js';
+import { RequestModule } from './request/request.module.js';
 // Recreate __dirname for ES Module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -37,7 +38,8 @@ const __dirname = dirname(__filename);
     EnrollmentModule,
     ProgrammeModule,
     CourseModule,
-    TimeticketModule
+    TimeticketModule,
+    RequestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

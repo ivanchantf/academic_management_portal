@@ -124,6 +124,8 @@ CREATE TABLE IF NOT EXISTS Credit_Overload_Requests (
     Process_DT TEXT,
     Submitted_Student_ID INTEGER NOT NULL,
     Processed_Staff_ID INTEGER,
+	File_Path TEXT,
+	UNIQUE (Submitted_Student_ID,Status ),
     FOREIGN KEY (Submitted_Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Processed_Staff_ID) REFERENCES Staffs(Staff_ID) ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -139,6 +141,8 @@ CREATE TABLE IF NOT EXISTS Mitigation_Requests (
     Process_DT TEXT,
     Submitted_Student_ID INTEGER NOT NULL,
     Processed_Staff_ID INTEGER,
+	File_Path TEXT,
+	UNIQUE(Date_Of_Assessment,Affecting_Course_Code,Submitted_Student_ID),
     FOREIGN KEY (Affecting_Course_Code) REFERENCES Courses(Course_Code) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (Submitted_Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Processed_Staff_ID) REFERENCES Staffs(Staff_ID) ON DELETE SET NULL ON UPDATE CASCADE
@@ -168,14 +172,15 @@ CREATE TABLE IF NOT EXISTS Teach (
 
 -- 16. Course_Enrollments (Junction Table)
 CREATE TABLE IF NOT EXISTS Course_Enrollments (
-    Student_ID INTEGER,
-    Course_Code TEXT,
+    Student_ID INTEGER NOT NULL,
+    Course_Code TEXT NOT NULL,
     Enroll_DT TEXT NOT NULL,
     Grade TEXT,
     PRIMARY KEY (Student_ID, Course_Code),
     FOREIGN KEY (Student_ID) REFERENCES Students(Student_ID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Course_Code) REFERENCES Courses(Course_Code) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 -- 17. Programme_Major_Enrollments (Junction Table)
 

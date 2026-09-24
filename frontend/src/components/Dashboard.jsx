@@ -25,6 +25,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SearchIcon from '@mui/icons-material/Search';
+import SendIcon from '@mui/icons-material/Send';
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
 
@@ -33,11 +34,11 @@ export default function Dashboard({ user }) {
     // --- Student Functions ---
 
     {
-      title: 'Submit Assignments',
-      description: 'Check deadlines and upload your coursework.',
-      icon: <AssignmentIcon sx={{ fontSize: 32 }} />,
+      title: 'Submit Mitigations/Credit Overload Requests',
+      description: 'Submit requests for course mitigations or credit overload approvals.',
+      icon:  <SendIcon sx={{ fontSize: 32 }} />,
       color: '#2e7d32',
-      path: '/assignments',
+      path: '/submit-requests',
       roles: ['Student']
     },
     {
