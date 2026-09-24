@@ -23,20 +23,14 @@ import LockResetIcon from '@mui/icons-material/LockReset';
 import PersonIcon from '@mui/icons-material/Person';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import SearchIcon from '@mui/icons-material/Search';
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
 
   // Define all available dashboard actions and their target roles
   const dashboardActions = [
     // --- Student Functions ---
-    {
-      title: 'Enrolled Courses',
-      description: 'View your current course schedule, grades, and materials.',
-      icon: <ClassIcon sx={{ fontSize: 32 }} />,
-      color: '#1976d2',
-      path: '/courses',
-      roles: ['Student']
-    },
+
     {
       title: 'Submit Assignments',
       description: 'Check deadlines and upload your coursework.',
@@ -98,6 +92,14 @@ export default function Dashboard({ user }) {
 
     // --- Common Functions (Accessible to All Roles) ---
 
+    {
+      title: 'Courses Catalog',
+      description: 'Browse available courses and view their details.',
+      icon: <SearchIcon sx={{ fontSize: 32 }} />,
+      color: '#1976d2',
+      path: '/courses-catalog',
+      roles: ['Student', 'Staff']
+    },
     {
       title: 'Change Password',
       description: 'Update your account password securely.',

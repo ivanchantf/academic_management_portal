@@ -74,5 +74,71 @@ async assignTeachers(user: any, body: any): Promise<void> {
     );
   });
 }
-  
+
+async getCoursesCatalog(): Promise<any> {
+  const sql = `
+    SELECT 
+      d.DID AS department_id,
+      d.Name AS department_name,
+      d.Address AS department_address,
+      d.Phone_No AS department_phone,
+      d.Photo_Path AS department_photo,
+      json_group_array(
+        json_object(
+          'course_code', c.Course_Code,
+          'name', c.Name,
+          'description', c.Description,
+          'difficulty', c.Difficulty,
+          'credits', c.Credits,
+          'status', c.Status,
+          'teachers', course_teachers.teachers
+        )
+      ) AS courses
+    FROM Departments d
+    INNER JOIN Courses c ON d.DID = c.Offered_DID
+    INNER JOIN (
+      SELECT 
+        t.Course_Code,
+        json_group_array(
+          json_object(
+            'staff_id', s.Staff_ID,
+            'office_no', s.Office_No,
+            'office_address', s.Office_Address,
+            'user_id', u.User_ID,
+            'name', u.Name,
+            'email', u.Email,
+            'phone_no', u.Phone_No
+          )
+        ) AS teachers
+      FROM Teach t
+      INNER JOIN Staffs s ON t.Staff_ID = s.Staff_ID
+      INNER JOIN Users u ON s.User_ID = u.User_ID
+      GROUP BY t.Course_Code
+    ) course_teachers ON c.Course_Code = course_teachers.Course_Code
+    GROUP BY d.DID;
+  `;
+
+  const rawCatalog = await this.dataSource.query(sql);
+
+  if (!rawCatalog || rawCatalog.length === 0) {
+    return null;
+  }
+
+  // Helper to parse nested JSON strings if returned as strings by SQLite driver
+  return rawCatalog.map((department: any) => {
+    const courses = typeof department.courses === 'string' 
+      ? JSON.parse(department.courses) 
+      : department.courses;
+
+    return {
+      ...department,
+      courses: courses.map((course: any) => ({
+        ...course,
+        teachers: typeof course.teachers === 'string' 
+          ? JSON.parse(course.teachers) 
+          : course.teachers
+      }))
+    };
+  });
+}
 }

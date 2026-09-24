@@ -91,5 +91,22 @@ export class CourseController {
     };
   }
 
+  @Get('/get-courses-catalog')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getCoursesCatalog(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let courses = await this.courseService.getCoursesCatalog();
+    console.log('Courses Catalog:', courses); // Log the courses for debugging
+    if (courses.length === 0) {
+      return {
+        success: false,
+        courses: []
+      };
+    }
+    return {
+      success: true,
+      courses: courses,
+    };
+  }
 
 }

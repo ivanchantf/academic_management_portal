@@ -14,6 +14,7 @@ import Department from './components/Department';
 import StudentEnrollment from './components/StudentEnrollment';
 import CoursesProgramsManagement from './components/CoursesProgramsManagement';
 import CreateNewAccount from './components/CreateNewAccount';
+import CoursesCatalog from './components/CoursesCatalog';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -39,6 +40,7 @@ function AppRoutes() {
           <Route path="/dashboard" element={<Dashboard user={user} />} />
           <Route path="/password-change" element={<PasswordChange user={user} />} />
           <Route path="/department/:did" element={<Department user={user} />} />
+          <Route path="/courses-catalog" element={<CoursesCatalog user={user} />} />
 
 
           {/* Staff-Only Route */}

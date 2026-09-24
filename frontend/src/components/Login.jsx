@@ -150,12 +150,15 @@ container: {
     color: '#333',
     fontWeight: '500',
   },
-  input: {
+input: {
     padding: '0.65rem',
     borderRadius: '6px',
     border: '1px solid #ccc',
     fontSize: '1rem',
     outline: 'none',
+    color: '#000000', 
+    backgroundColor: '#e4e4e4ff', 
+    boxSizing: 'border-box',
   },
   button: {
     padding: '0.75rem',
