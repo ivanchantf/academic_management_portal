@@ -26,6 +26,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
 
@@ -73,6 +74,14 @@ export default function Dashboard({ user }) {
       icon: <AccessTimeIcon sx={{ fontSize: 32 }} />,
       color: '#b7da39',
       path: '/issue-time-tickets',
+      roles: ['Staff']
+    },
+            {
+      title: 'Process Mitigation/Credit Overload Requests',
+      description: 'Process student requests for course mitigations or credit overloads.',
+      icon: <AssignmentTurnedInIcon sx={{ fontSize: 32 }} />,
+      color: '#b7da39',
+      path: '/process-requests',
       roles: ['Staff']
     },
     {

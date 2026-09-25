@@ -17,6 +17,7 @@ import CreateNewAccount from './components/CreateNewAccount';
 import CoursesCatalog from './components/CoursesCatalog';
 import IssueTimeTickets from './components/IssueTimeTickets';
 import SubmitRequests from './components/SubmitRequests';
+import ProcessRequests from './components/ProcessRequests';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -53,6 +54,7 @@ function AppRoutes() {
             <Route path="/courses-programs-management" element={<CoursesProgramsManagement  user={user} />} />
             <Route path="account-creation" element={<CreateNewAccount user={user} />} />
             <Route path="/issue-time-tickets" element={<IssueTimeTickets user={user} />} />
+            <Route path="/process-requests" element={<ProcessRequests user={user} />} />
           </Route>
 
           {/* Student-Only Route */}

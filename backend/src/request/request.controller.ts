@@ -69,6 +69,24 @@ export class RequestController {
     };
   }
 
+    @Get('/all-mitigation')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getAllMitigationRequests(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let requests= await this.requestService.getAllMitigationRequests(req.user);
+
+    if(requests.length === 0){
+      return {
+        success: false,
+        requests: []
+    }
+  }
+    return {
+      success: true,
+     requests: requests,
+    };
+  }
+
 
   
 
@@ -121,4 +139,44 @@ export class RequestController {
      requests: requests,
     };
   }
+
+  
+    @Get('/all-overload')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getAllOverloadRequests(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let requests= await this.requestService.getAllOverloadRequests(req.user);
+
+    if(requests.length === 0){
+      return {
+        success: false,
+        requests: []
+    }
+  }
+    return {
+      success: true,
+     requests: requests,
+    };
+  }
+
+
+  
+  @Post('/process-mitigation')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async processMitigation(@Req() req: any, @Body() body: any) {
+
+    let res = await this.requestService.processMitigationRequest(req.user, body.requestId, body.status);
+
+    return res;
+  }
+  @Post('/process-overload')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async processOverload(@Req() req: any, @Body() body: any){
+
+    let res = await this.requestService.processOverloadRequest(req.user, body.requestId, body.status);
+
+    return res;
+  }
+
+
 }

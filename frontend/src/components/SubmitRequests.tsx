@@ -23,7 +23,7 @@ interface MitigationRequest {
   Submit_DT: string;
   Process_DT: string | null;
   Submitted_Student_ID: number;
-  Processed_Staff_ID: number | null;
+  Processed_By: string | null;
   File_Path: string | null;
 }
 
@@ -34,7 +34,7 @@ interface OverloadRequest {
   Submit_DT: string;
   Process_DT: string | null;
   Submitted_Student_ID: number;
-  Processed_Staff_ID: number | null;
+  Processed_By: string | null;
   File_Path: string | null;
 }
 
@@ -454,7 +454,7 @@ const [overloadFileKey, setOverloadFileKey] = useState<number>(Date.now());
                     <th className="px-4 py-3">Status</th>
                     <th className="px-4 py-3">Submitted At</th>
                     <th className="px-4 py-3">Processed At</th>
-                    <th className="px-4 py-3">Staff ID</th>
+                    <th className="px-4 py-3">Processed By</th>
                     <th className="px-4 py-3 text-center">Attachment</th>
                   </tr>
                 </thead>
@@ -470,7 +470,7 @@ const [overloadFileKey, setOverloadFileKey] = useState<number>(Date.now());
                       <td className="px-4 py-3 whitespace-nowrap">{renderStatusBadge(req.Status)}</td>
                       <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{req.Submit_DT}</td>
                       <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{req.Process_DT || '-'}</td>
-                      <td className="px-4 py-3 text-gray-600">{req.Processed_Staff_ID || '-'}</td>
+                      <td className="px-4 py-3 text-gray-600">{req.Processed_By || '-'}</td>
                       <td className="px-4 py-3 text-center">
                         {req.File_Path ? (
                           <a
@@ -508,7 +508,7 @@ const [overloadFileKey, setOverloadFileKey] = useState<number>(Date.now());
                   <th className="px-4 py-3">Status</th>
                   <th className="px-4 py-3">Submitted At</th>
                   <th className="px-4 py-3">Processed At</th>
-                  <th className="px-4 py-3">Staff ID</th>
+                  <th className="px-4 py-3">Processed By</th>
                   <th className="px-4 py-3 text-center">Attachment</th>
                 </tr>
               </thead>
@@ -522,7 +522,7 @@ const [overloadFileKey, setOverloadFileKey] = useState<number>(Date.now());
                     <td className="px-4 py-3 whitespace-nowrap">{renderStatusBadge(req.Status)}</td>
                     <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{req.Submit_DT}</td>
                     <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{req.Process_DT || '-'}</td>
-                    <td className="px-4 py-3 text-gray-600">{req.Processed_Staff_ID || '-'}</td>
+                    <td className="px-4 py-3 text-gray-600">{req.Processed_By || '-'}</td>
                     <td className="px-4 py-3 text-center">
                       {req.File_Path ? (
                         <a
