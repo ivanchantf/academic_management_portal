@@ -19,6 +19,7 @@ import IssueTimeTickets from './components/IssueTimeTickets';
 import SubmitRequests from './components/SubmitRequests';
 import ProcessRequests from './components/ProcessRequests';
 import RegisterCourses from './components/RegisterCourses';
+import StaffList from './components/StaffList';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -45,8 +46,8 @@ function AppRoutes() {
           <Route path="/password-change" element={<PasswordChange user={user} />} />
           <Route path="/department/:did" element={<Department user={user} />} />
           <Route path="/courses-catalog" element={<CoursesCatalog user={user} />} />
-
-
+          <Route path="/staff-list" element={<StaffList user={user} />} />
+          
           {/* Staff-Only Route */}
           <Route element={<RequireRole user={user} allowedRole="Staff" />}>
            
@@ -56,6 +57,7 @@ function AppRoutes() {
             <Route path="account-creation" element={<CreateNewAccount user={user} />} />
             <Route path="/issue-time-tickets" element={<IssueTimeTickets user={user} />} />
             <Route path="/process-requests" element={<ProcessRequests user={user} />} />
+          
           </Route>
 
           {/* Student-Only Route */}

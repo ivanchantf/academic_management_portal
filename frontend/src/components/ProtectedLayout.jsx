@@ -26,6 +26,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import BadgeIcon from '@mui/icons-material/Badge';
 import LockReset from '@mui/icons-material/LockReset'
 import DomainIcon from '@mui/icons-material/Domain';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useAuth } from '../context/AuthContext';
 import {logout} from '../utils/logout'
@@ -223,6 +224,21 @@ export default function ProtectedLayout() {
                         <DomainIcon fontSize="small" />
                       </ListItemIcon>
                       My Department
+                    </MenuItem>
+
+     
+                    <Divider sx={{ my: 0.5 }} />
+                                      <MenuItem
+                      onClick={() => {
+                        setAnchorEl(null);
+                         navigate('/staff-list/' );
+                       
+                      }}
+                    >
+                      <ListItemIcon>
+                        <MenuBookIcon fontSize="small" />
+                      </ListItemIcon>
+                      Academic & Administrative Directory
                     </MenuItem>
 
      
