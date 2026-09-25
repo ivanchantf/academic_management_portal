@@ -20,7 +20,7 @@ The database for this project is provided in `pjDB.db` \
 The backend is directly connecting to this db file for performing different kinds of DB operations.\
 \
 For easy manipulation of data, you can download [DB Browser for SQLite] (https://sqlitebrowser.org/dl/) for connecting to the DB.\
-If you want to create the same DB from scratch, please refer to `create.sql`, insertion statement can be found in `demoAccount.sql` and `insertCourses.sql` , statments for creating Triggers can be found on `capitalizeStatusTrigger.sql`
+If you want to create the same DB from scratch, please refer to `create.sql`, insertion statement can be found in `demoAccount.sql` , `insertCourses.sql`, and `insertQualifications.sql` , statments for creating Triggers can be found on `capitalizeStatusTrigger.sql`
 
 ## 📋 Prerequisites
 
