@@ -80,7 +80,7 @@ export default function Dashboard({ user }) {
       title: 'Process Mitigation/Credit Overload Requests',
       description: 'Process student requests for course mitigations or credit overloads.',
       icon: <AssignmentTurnedInIcon sx={{ fontSize: 32 }} />,
-      color: '#b7da39',
+      color: '#3992da',
       path: '/process-requests',
       roles: ['Staff']
     },
