@@ -179,4 +179,17 @@ export class RequestController {
   }
 
 
+    @Get('/is-approved-overload')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getIsApprovedOverload(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let isApproved= await this.requestService.getIsApprovedOverload(req.user);
+
+    return {
+      success: true,
+     isApproved: isApproved,
+  };
+}
+
+
 }

@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs
 
 
 import { AuthGuard } from '../auth/auth.guard.js';
-import { EnrollmentService } from './enrollment..service.js';
+import { EnrollmentService } from './enrollment.service.js';
 
 @Controller('enrollment')
 export class EnrollmentController {
@@ -99,10 +99,41 @@ export class EnrollmentController {
 
     return {
       success: true,
-      students: courses,
+      courses: courses,
     };
   }
 
+
+    @Get('my-enrolled-programmes')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getMyEnrolledProgrammes(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    console.log('User:', req.user);
+    let programmes = await this.enrollmentService.getMyEnrolledProgrammes(req.user);
+
+    return {
+      success: true,
+      programmes: programmes,
+    };
+  }
+
+
+
+    @Post('enroll-courses')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async enrollCourses(@Req() req: any, @Body() body: { register: string[]; deregister: string[] }) {
+    // req.user is automatically populated by AuthGuard
+    console.log('User:', req.user);
+    let result = await this.enrollmentService.enrollCourses(req.user, body.register, body.deregister);
+
+    return {
+      success: true,
+      result: result,
+    };
+  }
+
+  
+  
 
 
 

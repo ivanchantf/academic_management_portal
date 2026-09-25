@@ -57,5 +57,18 @@ async deleteAll() {
   return { success: true };
 }
 
+async getMyTimeTickets(user: any) {
+
+  let studentID=await this.dataSource.query(`SELECT Student_ID FROM Students WHERE User_ID=?`, [user.User_ID]);
+  if (studentID.length === 0) {
+    throw new Error(`Student record not found for User_ID: ${user.User_ID}`);
+  }
+
+  let query = `SELECT * FROM Time_Tickets WHERE Holder_Student_ID = ?`;
+  let tickets = await this.dataSource.query(query, [studentID[0].Student_ID]);
+
+  return tickets;
+}
+
 
 }

@@ -33,7 +33,14 @@ export default function Dashboard({ user }) {
   // Define all available dashboard actions and their target roles
   const dashboardActions = [
     // --- Student Functions ---
-
+    {
+      title: 'Register for Courses',
+      description: 'Enroll in available courses for the semester.',
+      icon: <HowToRegIcon sx={{ fontSize: 32 }} />,
+      color: '#f3624f',
+      path: '/register-courses',
+      roles: ['Student']
+    },
     {
       title: 'Submit Mitigations/Credit Overload Requests',
       description: 'Submit requests for course mitigations or credit overload approvals.',

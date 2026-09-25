@@ -47,4 +47,24 @@ async issueTimeTicket(@Req() req: any, @Body() body: any) {
     }
   }
 
+@Get('/my-timetickets')
+  @UseGuards(AuthGuard)
+  async getMyTimeTickets(@Req() req: any) {
+    try {
+      const tickets = await this.timeticketService.getMyTimeTickets(req.user);
+      return {
+        success: true,
+        tickets: tickets,
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        message: error.message || 'Failed to retrieve time tickets',
+      };
+    }
+  }
+
+  
+  
+
 }

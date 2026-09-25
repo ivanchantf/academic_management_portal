@@ -6,7 +6,7 @@ import { dirname, resolve } from 'path';
 import { AuthModule } from '../auth/auth.module.js';
 import { JwtService } from '@nestjs/jwt';
 import {  EnrollmentController } from './enrollment.controller.js';
-import { EnrollmentService } from './enrollment..service.js';
+import { EnrollmentService } from './enrollment.service.js';
 // Recreate __dirname for ES Module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

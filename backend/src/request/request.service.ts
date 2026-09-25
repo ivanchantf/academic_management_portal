@@ -155,4 +155,14 @@ export class RequestService {
 
     return { success: true, message: `Overload request ${status.toLowerCase()}d successfully.` };
   }
+
+  async getIsApprovedOverload(user:any){
+    let student=await this.dataSource.query(`SELECT Student_ID FROM Students WHERE User_ID = ?`, [user.User_ID]);
+    if(student.length===0){
+      return { success: false, message: 'Student not found for the given user.' };
+    }
+    let isApproved=await this.dataSource.query(`SELECT * FROM Credit_Overload_Requests WHERE Submitted_Student_ID = ? AND Status = 'APPROVED'`, [student[0].Student_ID]);
+
+    return isApproved.length > 0 ;
+  }
 }
