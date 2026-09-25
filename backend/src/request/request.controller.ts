@@ -39,12 +39,12 @@ export class RequestController {
     }),
   )
   async submitMitigation(@Req() req: any, @Body() body: SubmitMitigationDto,
-    @UploadedFile() file: any) {
+    @UploadedFile() file?: any) {
     // Output: { requestType: 'MITIGATION', assessmentDate: '2010-10-10', reason: 'sick', courseCode: 'CS101' }
     console.log('Request Body:', body);
-    console.log('Uploaded File:', file.path);
+    console.log('Uploaded File:', file?.path);
 
-    let res = await this.requestService.submitMitigationRequest(req.user, body.assessmentDate, body.reason, body.courseCode, file.path.replaceAll('\\', '/'));
+    let res = await this.requestService.submitMitigationRequest(req.user, body.assessmentDate, body.reason, body.courseCode, file?.path.replaceAll('\\', '/'));
 
     return res;
   }
@@ -53,7 +53,7 @@ export class RequestController {
 
     @Get('/my-mitigation')
   @UseGuards(AuthGuard) // Blocks request if not logged in
-  async listDept(@Req() req: any) {
+  async getMyMitigationRequests(@Req() req: any) {
     // req.user is automatically populated by AuthGuard
     let requests= await this.requestService.getMyMitigationRequests(req.user);
 
@@ -69,4 +69,56 @@ export class RequestController {
     };
   }
 
+
+  
+
+
+  @Post('/submit-overload')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  @UseInterceptors(
+    FileInterceptor('supportingDocument', {
+      storage: diskStorage({
+        // Define the target directory relative to the process execution root
+        destination: './uploads/overload',
+
+        // Custom filename generation to prevent file overwrites
+        filename: (req, file, callback) => {
+          const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          const ext = extname(file.originalname);
+          const filename = `${file.fieldname}-${uniqueSuffix}${ext}`;
+          callback(null, filename);
+        },
+      }),
+    }),
+  )
+  async submitOverload(@Req() req: any, @Body() body: SubmitMitigationDto,
+    @UploadedFile() file?: any) {
+    // Output: { requestType: 'OVERLOAD',reason: 'sick'}
+    console.log('Request Body:', body);
+    console.log('Uploaded File:', file?.path);
+
+    let res = await this.requestService.submitOverloadRequest(req.user, body.reason,  file?.path.replaceAll('\\', '/'));
+
+    return res;
+  }
+
+
+
+    @Get('/my-overload')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getMyOverloadRequests(@Req() req: any) {
+    // req.user is automatically populated by AuthGuard
+    let requests= await this.requestService.getMyOverloadRequests(req.user);
+
+    if(requests.length === 0){
+      return {
+        success: false,
+        requests: []
+    }
+  }
+    return {
+      success: true,
+     requests: requests,
+    };
+  }
 }

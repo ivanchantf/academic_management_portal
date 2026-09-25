@@ -45,6 +45,10 @@ export default function SubmitRequests({ user }: { user: any }) {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
+  // Key state to reset file input elements on successful submission
+const [mitigationFileKey, setMitigationFileKey] = useState<number>(Date.now());
+const [overloadFileKey, setOverloadFileKey] = useState<number>(Date.now());
+
   // Form State - Mitigation Request
   const [assessmentDate, setAssessmentDate] = useState<string>('');
   const [mitigationReason, setMitigationReason] = useState<string>('');
@@ -171,6 +175,7 @@ export default function SubmitRequests({ user }: { user: any }) {
         setAssessmentDate('');
         setMitigationReason('');
         setMitigationFile(null);
+        setMitigationFileKey(Date.now());
         fetchMyMitigationRequests();
       } else {
         setMessage({ type: 'error', text: data.message || 'Failed to submit request.' });
@@ -213,6 +218,7 @@ export default function SubmitRequests({ user }: { user: any }) {
         setMessage({ type: 'success', text: 'Credit overload request submitted successfully.' });
         setOverloadReason('');
         setOverloadFile(null);
+        setOverloadFileKey(Date.now());
         fetchMyOverloadRequests();
       } else {
         setMessage({ type: 'error', text: data.message || 'Failed to submit request.' });
@@ -359,6 +365,7 @@ export default function SubmitRequests({ user }: { user: any }) {
               </label>
               <input
                 type="file"
+                key={mitigationFileKey} // Reset file input on successful submission
                 onChange={(e) => setMitigationFile(e.target.files?.[0] || null)}
                 className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
               />
@@ -396,6 +403,7 @@ export default function SubmitRequests({ user }: { user: any }) {
               </label>
               <input
                 type="file"
+                key={overloadFileKey} // Reset file input on successful submission
                 onChange={(e) => setOverloadFile(e.target.files?.[0] || null)}
                 className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
               />
