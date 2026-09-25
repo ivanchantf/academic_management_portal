@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import '../App.css'
+import "../App.css";
+
 export default function CoursesCatalog({ user }) {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   // State for handling course search/filter
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   // State for detail modal
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -74,9 +75,9 @@ export default function CoursesCatalog({ user }) {
       {/* Header & Search Bar */}
       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-        <h1 className="text-2xl font-bold !text-gray-600">
-  Course Catalog
-</h1>
+          <h1 className="text-2xl font-bold !text-gray-600">
+            Course Catalog
+          </h1>
           <p className="text-sm text-gray-500 mt-1">
             Courses available in this semester are shown below. Double-click any row to view full course details.
           </p>
@@ -85,7 +86,7 @@ export default function CoursesCatalog({ user }) {
         <div className="w-full md:w-80">
           <input
             type="text"
-            placeholder="Search course code, name, or teacher..."
+            placeholder="Search code, name, teacher, or programme..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
@@ -100,10 +101,14 @@ export default function CoursesCatalog({ user }) {
           const query = searchTerm.toLowerCase();
           const matchesCode = course.course_code.toLowerCase().includes(query);
           const matchesName = course.name.toLowerCase().includes(query);
-          const matchesTeacher = course.teachers.some((t) =>
+          const matchesTeacher = course.teachers?.some((t) =>
             t.name.toLowerCase().includes(query)
           );
-          return matchesCode || matchesName || matchesTeacher;
+          const matchesProgramme = course.for_programme?.some((prog) =>
+            prog.toLowerCase().includes(query)
+          );
+
+          return matchesCode || matchesName || matchesTeacher || matchesProgramme;
         });
 
         if (filteredCourses.length === 0 && searchTerm) {
@@ -118,7 +123,7 @@ export default function CoursesCatalog({ user }) {
             {/* Department Info Header */}
             <div className="bg-gray-800 text-white p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
               <div>
-                <h2 className="text-lg font-semibold ">{dept.department_name}</h2>
+                <h2 className="text-lg font-semibold">{dept.department_name}</h2>
                 <p className="text-xs text-gray-300">{dept.department_address}</p>
               </div>
               <span className="text-xs bg-gray-700 px-3 py-1 rounded-full text-gray-200">
@@ -133,6 +138,7 @@ export default function CoursesCatalog({ user }) {
                   <tr className="bg-gray-100 text-xs font-semibold text-gray-600 uppercase tracking-wider border-b border-gray-200">
                     <th className="py-3 px-4">Course Code</th>
                     <th className="py-3 px-4">Course Name</th>
+                    <th className="py-3 px-4">Programmes</th>
                     <th className="py-3 px-4">Difficulty</th>
                     <th className="py-3 px-4">Credits</th>
                     <th className="py-3 px-4">Teachers</th>
@@ -146,18 +152,32 @@ export default function CoursesCatalog({ user }) {
                       className="hover:bg-blue-50/60 cursor-pointer transition-colors duration-150 select-none"
                       title="Double-click to view details"
                     >
-                      <td className="py-3 px-4 font-mono font-medium text-blue-600">
+                      <td className="py-3 px-4 font-mono font-medium text-blue-600 whitespace-nowrap">
                         {course.course_code}
                       </td>
                       <td className="py-3 px-4 font-medium text-gray-900">
                         {course.name}
                       </td>
                       <td className="py-3 px-4">
+                        <div className="flex flex-wrap gap-1">
+                          {course.for_programme?.map((prog) => (
+                            <span
+                              key={prog}
+                              className="px-2 py-0.5 rounded text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-200"
+                            >
+                              {prog}
+                            </span>
+                          )) || <span className="text-gray-400 text-xs">—</span>}
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 whitespace-nowrap">
                         <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-200 text-gray-800">
                           {course.difficulty}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-gray-700">{course.credits}</td>
+                      <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                        {course.credits}
+                      </td>
                       <td className="py-3 px-4 text-gray-700">
                         {course.teachers.map((t) => t.name).join(", ")}
                       </td>
@@ -184,7 +204,7 @@ export default function CoursesCatalog({ user }) {
 
             {/* Modal Header */}
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs font-bold uppercase tracking-wide bg-blue-100 text-blue-800 px-2.5 py-1 rounded">
                   {selectedCourse.course_code}
                 </span>
@@ -202,6 +222,25 @@ export default function CoursesCatalog({ user }) {
                 {selectedDepartment?.department_name}
               </p>
             </div>
+
+            {/* Target Programmes Section */}
+            {selectedCourse.for_programme && selectedCourse.for_programme.length > 0 && (
+              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+                  Available For Programmes
+                </h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {selectedCourse.for_programme.map((prog) => (
+                    <span
+                      key={prog}
+                      className="px-2.5 py-1 rounded-md text-xs font-semibold bg-indigo-100 text-indigo-800 border border-indigo-200"
+                    >
+                      {prog}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Description */}
             <div className="border-t border-b border-gray-100 py-4">

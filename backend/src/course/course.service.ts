@@ -91,7 +91,8 @@ async getCoursesCatalog(): Promise<any> {
           'difficulty', c.Difficulty,
           'credits', c.Credits,
           'status', c.Status,
-          'teachers', course_teachers.teachers
+          'teachers', course_teachers.teachers,
+          'for_programme', COALESCE(course_programmes.programmes, json('[]'))
         )
       ) AS courses
     FROM Departments d
@@ -115,6 +116,17 @@ async getCoursesCatalog(): Promise<any> {
       INNER JOIN Users u ON s.User_ID = u.User_ID
       GROUP BY t.Course_Code
     ) course_teachers ON c.Course_Code = course_teachers.Course_Code
+    LEFT JOIN (
+      SELECT 
+        Course_Code,
+        json_group_array(Programme_Code) AS programmes
+      FROM (
+        SELECT Course_Code, Programme_Code FROM Major_Programmes_Courses
+        UNION
+        SELECT Course_Code, Programme_Code FROM Minor_Programmes_Courses
+      ) combined_programmes
+      GROUP BY Course_Code
+    ) course_programmes ON c.Course_Code = course_programmes.Course_Code
     GROUP BY d.DID;
   `;
 
@@ -124,7 +136,7 @@ async getCoursesCatalog(): Promise<any> {
     return null;
   }
 
-  // Helper to parse nested JSON strings if returned as strings by SQLite driver
+  // Parse nested JSON strings returned by SQLite driver
   return rawCatalog.map((department: any) => {
     const courses = typeof department.courses === 'string' 
       ? JSON.parse(department.courses) 
@@ -136,7 +148,10 @@ async getCoursesCatalog(): Promise<any> {
         ...course,
         teachers: typeof course.teachers === 'string' 
           ? JSON.parse(course.teachers) 
-          : course.teachers
+          : course.teachers,
+        for_programme: typeof course.for_programme === 'string'
+          ? JSON.parse(course.for_programme)
+          : course.for_programme
       }))
     };
   });
