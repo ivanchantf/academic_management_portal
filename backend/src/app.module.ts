@@ -15,6 +15,7 @@ import { CourseModule } from './course/course.module.js';
 import { TimeticketModule } from './timeticket/timeticket.module.js';
 import { RequestModule } from './request/request.module.js';
 import { StaffModule } from './staff/staff.module.js';
+import { TeachModule } from './teach/teach.module.js';
 // Recreate __dirname for ES Module scope
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -41,7 +42,8 @@ const __dirname = dirname(__filename);
     CourseModule,
     TimeticketModule,
     RequestModule,
-    StaffModule
+    StaffModule,
+    TeachModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -28,6 +28,8 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import PublishIcon from '@mui/icons-material/Publish';
+import GradingIcon from '@mui/icons-material/Grading';
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
 
@@ -74,6 +76,14 @@ export default function Dashboard({ user }) {
       icon: <ClassIcon sx={{ fontSize: 32 }} />,
       color: '#009688',
       path: '/courses-programs-management',
+      roles: ['Staff']
+    },
+            {
+      title: 'Release Grades',
+      description: 'Release final grades for students.',
+      icon: <GradingIcon sx={{ fontSize: 32 }} />,
+      color: '#3949ab',
+      path: '/release-grade',
       roles: ['Staff']
     },
         {

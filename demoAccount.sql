@@ -252,7 +252,7 @@ INSERT INTO Users (
 );
 
 INSERT INTO Students (CGPA, User_ID) VALUES (
-    3.45, (SELECT User_ID FROM Users WHERE HKID = 'Y234567(2)')
+    0, (SELECT User_ID FROM Users WHERE HKID = 'Y234567(2)')
 );
 
 INSERT INTO Accounts (Username, PasswordHash, User_ID) VALUES (
@@ -286,7 +286,7 @@ INSERT INTO Users (
 );
 
 INSERT INTO Students (CGPA, User_ID) VALUES (
-    3.82, (SELECT User_ID FROM Users WHERE HKID = 'Y456789(4)')
+    0, (SELECT User_ID FROM Users WHERE HKID = 'Y456789(4)')
 );
 
 INSERT INTO Accounts (Username, PasswordHash, User_ID) VALUES (
@@ -303,7 +303,7 @@ INSERT INTO Users (
 );
 
 INSERT INTO Students (CGPA, User_ID) VALUES (
-    3.10, (SELECT User_ID FROM Users WHERE HKID = 'Y567890(5)')
+    0, (SELECT User_ID FROM Users WHERE HKID = 'Y567890(5)')
 );
 
 INSERT INTO Accounts (Username, PasswordHash, User_ID) VALUES (
