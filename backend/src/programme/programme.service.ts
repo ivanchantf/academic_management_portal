@@ -215,4 +215,33 @@ async updateProgramme(
     await queryRunner.release();
   }
 }
+
+async getSyllabus(programmeCode: string) {
+  const query = `
+    SELECT 
+      c.Course_Code,
+      c.Name,
+      c.Description,
+      c.Difficulty,
+      c.Credits,
+      c.Status,
+      c.Offered_DID
+    FROM Courses c
+    INNER JOIN (
+      SELECT Course_Code 
+      FROM Major_Programmes_Courses 
+      WHERE Programme_Code = ?
+
+      UNION
+
+      SELECT Course_Code 
+      FROM Minor_Programmes_Courses 
+      WHERE Programme_Code = ?
+    ) pc ON c.Course_Code = pc.Course_Code
+  `;
+
+  const courses = await this.dataSource.query(query, [programmeCode, programmeCode]);
+
+  return courses;
+}
 }

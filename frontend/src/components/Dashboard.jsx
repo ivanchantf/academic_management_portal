@@ -53,11 +53,11 @@ export default function Dashboard({ user }) {
       roles: ['Student']
     },
     {
-      title: 'Academic Records',
-      description: 'Access your transcripts and GPA summaries.',
+      title: 'Academic Progress',
+      description: 'View your academic progress and achievements.',
       icon: <SchoolIcon sx={{ fontSize: 32 }} />,
-      color: '#ed6c02',
-      path: '/records',
+      color: '#3949ab',
+      path: '/academic-progress',
       roles: ['Student']
     },
      {

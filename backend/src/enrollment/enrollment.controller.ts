@@ -99,7 +99,8 @@ export class EnrollmentController {
 
     return {
       success: true,
-      courses: courses,
+      courses: courses.courses,
+      cgpa: courses.cgpa,
     };
   }
 

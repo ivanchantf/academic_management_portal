@@ -21,6 +21,7 @@ import ProcessRequests from './components/ProcessRequests';
 import RegisterCourses from './components/RegisterCourses';
 import StaffList from './components/StaffList';
 import ReleaseGrade from './components/ReleaseGrade';
+import AcademicProgress from './components/AcademicProgress';
 function AppRoutes() {
   const { user, loading } = useAuth();
 
@@ -67,6 +68,7 @@ function AppRoutes() {
             <Route path="/profile-student" element={<ProfileStudent user={user} />} />
             <Route path="/submit-requests" element={<SubmitRequests user={user} />} />
             <Route path="/register-courses" element={<RegisterCourses />} />
+            <Route path="/academic-progress" element={<AcademicProgress />} />
           </Route>
         </Route>
       </Route>

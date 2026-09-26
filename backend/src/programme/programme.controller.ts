@@ -72,4 +72,18 @@ export class ProgrammeController {
     return p;
   }
 
+
+      @Get('syllabus/:programmeCode')
+  @UseGuards(AuthGuard) // Blocks request if not logged in
+  async getCourseSyllabus(@Req() req: any, @Param('programmeCode') programmeCode: string) {
+    // req.user is automatically populated by AuthGuard
+    let courses= await this.programmeService.getSyllabus(programmeCode);
+
+    console.log('Courses:', courses); // Log the courses for debugging
+    return {
+      success: true,
+      courses: courses,
+    };
+  }
+
 }
