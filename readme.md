@@ -60,18 +60,6 @@ npm run dev
 ```
 
 ---
-### 👥 Demo Accounts
-
-You can log in to the application using the following test credentials:
-
-#### Student Account
-* **Username:** `tmchan`
-* **Password:** `tmchan123!`
-
-#### Staff Account
-* **Username:** `alexwong`
-* **Password:** `alexwong123!`
-
 
 ### ⚙️ Backend Setup
 
@@ -88,4 +76,15 @@ npm run start:dev
 ```
 
 ---
+## 👥 Demo Accounts
+
+You can log in to the application using the following test credentials:
+
+### Student Account
+* **Username:** `tmchan`
+* **Password:** `tmchan123!`
+
+### Staff Account
+* **Username:** `alexwong`
+* **Password:** `alexwong123!`
 
