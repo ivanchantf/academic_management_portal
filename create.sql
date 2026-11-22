@@ -222,3 +222,18 @@ CREATE TABLE IF NOT EXISTS Minor_Programmes_Courses (
     FOREIGN KEY (Programme_Code) REFERENCES Minor_Programmes(Programme_Code) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Course_Code) REFERENCES Courses(Course_Code) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- 20. Secondary indexes
+-- Keep in sync with database/indexes.sql, which is the idempotent migration.
+CREATE INDEX IF NOT EXISTS idx_enrollment_course
+  ON Course_Enrollments(Course_Code, Student_ID);
+CREATE INDEX IF NOT EXISTS idx_teach_course
+  ON Teach(Course_Code, Staff_ID);
+CREATE INDEX IF NOT EXISTS idx_ticket_holder_window
+  ON Time_Tickets(Holder_Student_ID, From_DT, To_DT);
+CREATE INDEX IF NOT EXISTS idx_mit_student_dt
+  ON Mitigation_Requests(Submitted_Student_ID, Submit_DT DESC);
+CREATE INDEX IF NOT EXISTS idx_pme_programme
+  ON Programme_Major_Enrollments(Programme_Code, Student_ID, Status);
+CREATE INDEX IF NOT EXISTS idx_pmin_programme
+  ON Programme_Minor_Enrollments(Programme_Code, Student_ID, Status);
